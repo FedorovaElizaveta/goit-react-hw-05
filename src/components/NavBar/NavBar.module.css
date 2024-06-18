@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.headerNav {
+  display: flex;
+  gap: 10px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #000;
+}
+
+.navActive {
+  color: #4d5ae5;
+}

@@ -1,0 +1,35 @@
+.errorWrapper {
+  padding: 20px;
+  text-align: center;
+}
+
+.errorCode {
+  font-size: 250px;
+  letter-spacing: 10px;
+  color: #4d5ae5;
+  margin-bottom: 5px;
+}
+
+.errorText {
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+
+.errorInfo {
+  margin-bottom: 80px;
+}
+
+.goHomeLink {
+  padding: 20px 35px;
+  color: #fff;
+  background-color: #4d5ae5;
+  border-radius: 25px;
+  font-size: 20px;
+  text-decoration: none;
+  transition: background-color 250ms ease-in-out;
+}
+
+.goHomeLink:hover,
+.goHomeLink:focus {
+  background-color: #404bbf;
+}
