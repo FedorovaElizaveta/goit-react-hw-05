@@ -3,5 +3,9 @@
 }
 
 .trendingMoviesList {
-  list-style-type: circle;
+  list-style-type: disc;
+}
+
+.movieLink {
+  text-decoration: none;
 }

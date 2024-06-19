@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
 import getTrendingMovies from "../api/trending-movies";
 import TrendingMoviesList from "../components/TrendingMoviesList/TrendingMoviesList";
-import getTrendingMovieDetails from "../api/movie-details";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
+import Loader from "../components/Loader/Loader";
+import ErrorNoMovies from "../components/ErrorNoMovies/ErrorNoMovies";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [movie, setMovie] = useState([]);
   const [error, setError] = useState(false);
+  const [errorNoMovies, setErrorNoMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [movieId, setMovieId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setError(false);
+        setErrorNoMovies(false);
         setIsLoading(true);
         const data = await getTrendingMovies();
         setTrendingMovies(data.results);
+        {
+          data.results.length === 0 && setErrorNoMovies(true);
+        }
       } catch (error) {
         setError(true);
       } finally {
@@ -26,35 +31,14 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  const getMovieId = (id) => {
-    setMovieId(id);
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setError(false);
-        setIsLoading(true);
-        if (movieId !== null) {
-          const data = await getTrendingMovieDetails(movieId);
-          setMovie(data);
-          console.log(data);
-        }
-      } catch (error) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [movieId]);
-
   return (
     <>
-      <TrendingMoviesList
-        trendingMovies={trendingMovies}
-        getMovieId={getMovieId}
-      />
+      {error && <ErrorMessage />}
+      {errorNoMovies && <ErrorNoMovies />}
+      {isLoading && <Loader />}
+      {trendingMovies.length > 0 && (
+        <TrendingMoviesList trendingMovies={trendingMovies} />
+      )}
     </>
   );
 };

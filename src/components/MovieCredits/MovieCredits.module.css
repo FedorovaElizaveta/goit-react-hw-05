@@ -1,0 +1,31 @@
+.castList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.castListItem {
+  padding: 10px;
+  text-align: center;
+  border: 1px #969696 solid;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.castImg {
+  width: 185px;
+  height: 278px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.castListInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  margin-top: 5px;
+}

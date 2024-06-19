@@ -1,0 +1,48 @@
+.moviesDetailsList {
+  padding: 15px;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  background-color: #4d5ae5;
+  border-radius: 20px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.backBtn:hover,
+.backBtn:focus {
+  background-color: #404bbf;
+}
+
+.movieInfoWrapper {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.subMovieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.navLink {
+  color: #4d5ae5;
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: #404bbf;
+}
