@@ -1,0 +1,39 @@
+.searchMovieForm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 0 0 30px;
+}
+
+.searchMovieFormInput {
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  color: #bdc0d2;
+  background-color: transparent;
+  border: 1px solid #bdc0d2;
+  border-radius: 15px;
+  padding-left: 20px;
+  transition: border-color ease-in-out 250ms;
+}
+
+.searchMovieFormInput:focus {
+  outline: 0px solid transparent;
+  border-color: #5b46e4;
+}
+
+.searchMovieFormBtn {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  color: #bdc0d2;
+  background-color: #5b46e4;
+  border-radius: 15px;
+  border: none;
+  transition: background-color ease-in-out 250ms;
+}
+
+.searchMovieFormBtn:hover,
+.searchMovieFormBtn:focus {
+  background-color: #4d3bbd;
+}

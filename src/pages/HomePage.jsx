@@ -34,7 +34,11 @@ const HomePage = () => {
   return (
     <>
       {error && <ErrorMessage />}
-      {errorNoMovies && <ErrorNoMovies />}
+      {errorNoMovies && (
+        <ErrorNoMovies>
+          Sorry, looks like there is no movies now...
+        </ErrorNoMovies>
+      )}
       {isLoading && <Loader />}
       {trendingMovies.length > 0 && (
         <TrendingMoviesList trendingMovies={trendingMovies} />

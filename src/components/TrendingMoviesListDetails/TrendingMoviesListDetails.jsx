@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import getTrendingMovieDetails from "../../api/movie-details";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -16,8 +16,7 @@ const TrendingMoviesListDetails = () => {
   const genres = movie.genres?.map((genre) => genre.name).join(", ") ?? "";
 
   const location = useLocation();
-
-  const backLocation = useRef(location.state ?? "/");
+  const backLocation = location.state?.from || "/";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +38,7 @@ const TrendingMoviesListDetails = () => {
 
   return (
     <div className={css.moviesDetailsList}>
-      <Link to={backLocation.current} className={css.backBtn}>
+      <Link to={backLocation} className={css.backBtn}>
         Go back
       </Link>
       {error && <ErrorMessage />}
@@ -67,12 +66,20 @@ const TrendingMoviesListDetails = () => {
             <p>Additional information</p>
             <ul className={css.movieCreditsAndReviewsList}>
               <li>
-                <Link to="credits" className={css.creditsAndReviewsLink}>
+                <Link
+                  to="credits"
+                  state={{ from: backLocation }}
+                  className={css.creditsAndReviewsLink}
+                >
                   Credits
                 </Link>
               </li>
               <li>
-                <Link to="reviews" className={css.creditsAndReviewsLink}>
+                <Link
+                  to="reviews"
+                  state={{ from: backLocation }}
+                  className={css.creditsAndReviewsLink}
+                >
                   Reviews
                 </Link>
               </li>

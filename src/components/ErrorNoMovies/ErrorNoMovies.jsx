@@ -1,11 +1,7 @@
 import css from "./ErrorNoMovies.module.css";
 
-const ErrorNoMovies = () => {
-  return (
-    <p className={css.errorNoMovies}>
-      Sorry, looks like there is no movies now...
-    </p>
-  );
+const ErrorNoMovies = ({ children }) => {
+  return <p className={css.errorNoMovies}>{children}</p>;
 };
 
 export default ErrorNoMovies;
