@@ -1,5 +1,9 @@
 .moviesDetailsList {
-  padding: 15px;
+  padding: 30px;
+}
+
+.movieDetailsHeadings {
+  color: #bdc0d2;
 }
 
 .backBtn {
@@ -9,15 +13,16 @@
   width: 130px;
   height: 40px;
   color: #fff;
-  background-color: #4d5ae5;
+  background-color: #5b46e4;
   border-radius: 20px;
   text-decoration: none;
   margin-bottom: 20px;
+  transition: background-color ease-in-out 250ms;
 }
 
 .backBtn:hover,
 .backBtn:focus {
-  background-color: #404bbf;
+  background-color: #4d3bbd;
 }
 
 .movieInfoWrapper {
@@ -32,17 +37,22 @@
   gap: 30px;
 }
 
-.subMovieInfo {
+.movieCreditsAndReviews {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
 }
 
-.navLink {
+.movieCreditsAndReviewsList {
+  display: flex;
+  gap: 10px;
+}
+
+.creditsAndReviewsLink {
   color: #4d5ae5;
 }
 
-.navLink:hover,
-.navLink:focus {
+.creditsAndReviewsLink:hover,
+.creditsAndReviewsLink:focus {
   color: #404bbf;
 }

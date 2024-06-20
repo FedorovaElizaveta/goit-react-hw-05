@@ -1,9 +1,19 @@
+.trendingMoviesListContainer {
+  padding: 30px;
+}
+
 .trendingMoviesTitle {
-  padding: 20px 0 0 20px;
+  color: #bdc0d2;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .trendingMoviesList {
-  list-style-type: disc;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .movieLink {

@@ -4,13 +4,14 @@ import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import css from "./TrendingMoviesListDetails.module.css";
+import NoElementMessage from "../NoElementMessage/NoElementMessage";
 
 const TrendingMoviesListDetails = () => {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const imageUrl = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+  const imageUrl = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
   const releaseDate = movie.release_date?.slice(0, 4) ?? "";
   const genres = movie.genres?.map((genre) => genre.name).join(", ") ?? "";
 
@@ -46,28 +47,32 @@ const TrendingMoviesListDetails = () => {
       {Object.keys(movie).length > 0 && (
         <div>
           <div className={css.movieInfoWrapper}>
-            <img src={imageUrl} alt={movie.title} />
+            <img src={imageUrl} alt={movie.title} width={342} height={513} />
             <div className={css.movieInfo}>
-              <h2>
+              <h2 className={css.movieDetailsHeadings}>
                 {movie.title} ({releaseDate})
               </h2>
               <p>User Score: {movie.vote_average}</p>
-              <h3>Overview</h3>
-              <p>{movie.overview}</p>
-              <h3>Genres</h3>
-              <p>{genres}</p>
+              <h3 className={css.movieDetailsHeadings}>Overview</h3>
+              {movie.overview ? (
+                <p>{movie.overview}</p>
+              ) : (
+                <NoElementMessage element="overview" />
+              )}
+              <h3 className={css.movieDetailsHeadings}>Genres</h3>
+              {genres ? <p>{genres}</p> : <NoElementMessage element="genres" />}
             </div>
           </div>
-          <div className={css.subMovieInfo}>
+          <div className={css.movieCreditsAndReviews}>
             <p>Additional information</p>
-            <ul>
+            <ul className={css.movieCreditsAndReviewsList}>
               <li>
-                <Link to="credits" className={css.navLink}>
+                <Link to="credits" className={css.creditsAndReviewsLink}>
                   Credits
                 </Link>
               </li>
               <li>
-                <Link to="reviews" className={css.navLink}>
+                <Link to="reviews" className={css.creditsAndReviewsLink}>
                   Reviews
                 </Link>
               </li>

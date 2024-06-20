@@ -1,7 +1,22 @@
 .reviewsList {
   display: flex;
   flex-direction: column;
+  gap: 30px;
+}
+
+.reviewsListItem {
+  display: flex;
+  flex-direction: column;
   gap: 15px;
-  padding-left: 0;
-  list-style-type: none;
+}
+
+.authorAvatarAndNameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #bdc0d2;
+}
+
+.authorAvatar {
+  border-radius: 50%;
 }
