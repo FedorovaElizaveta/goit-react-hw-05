@@ -1,13 +1,13 @@
-import css from "./MoviesListDetails.module.css";
+import css from "./MovieDetails.module.css";
 import { useEffect, useState } from "react";
-import getTrendingMovieDetails from "../../api/movie-details";
+import getMovieDetails from "../../api/movie-details";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import noPosterAvailable from "../../assets/images/no_poster_available.jpg";
 
-const MoviesListDetails = () => {
-  const { moviesId } = useParams();
+const MovieDetails = () => {
+  const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,7 @@ const MoviesListDetails = () => {
       try {
         setError(false);
         setIsLoading(true);
-        const data = await getTrendingMovieDetails(moviesId);
+        const data = await getMovieDetails(movieId);
         setMovie(data);
       } catch (error) {
         setError(true);
@@ -31,13 +31,13 @@ const MoviesListDetails = () => {
         setIsLoading(false);
       }
     };
-    if (moviesId) {
+    if (movieId) {
       fetchData();
     }
-  }, [moviesId]);
+  }, [movieId]);
 
   return (
-    <div className={css.moviesDetailsList}>
+    <div className={css.movieDetailsList}>
       <Link to={backLocation} className={css.backBtn}>
         Go back
       </Link>
@@ -91,7 +91,7 @@ const MoviesListDetails = () => {
               <li>
                 <Link
                   to="credits"
-                  state={{ from: backLocation }}
+                  state={{ from: location }}
                   className={css.creditsAndReviewsLink}
                 >
                   Credits
@@ -100,7 +100,7 @@ const MoviesListDetails = () => {
               <li>
                 <Link
                   to="reviews"
-                  state={{ from: backLocation }}
+                  state={{ from: location }}
                   className={css.creditsAndReviewsLink}
                 >
                   Reviews
@@ -115,4 +115,4 @@ const MoviesListDetails = () => {
   );
 };
 
-export default MoviesListDetails;
+export default MovieDetails;

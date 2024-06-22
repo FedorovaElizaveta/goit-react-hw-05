@@ -15,14 +15,14 @@
   transform: scale(1.05);
 }
 
-.movieName {
+.moviePoster {
+  object-fit: cover;
+}
+
+.movieTitle {
   width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: 10px;
-}
-
-.searchedMoviePoster {
-  object-fit: cover;
 }

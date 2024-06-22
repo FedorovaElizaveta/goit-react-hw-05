@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import getTrendingMovies from "../api/trending-movies";
-import TrendingMoviesList from "../components/TrendingMoviesList/TrendingMoviesList";
+import MoviesList from "../components/MovieList/MovieList";
 import Loader from "../components/Loader/Loader";
 import Message from "../components/Message/Message";
 
@@ -42,7 +42,7 @@ const HomePage = () => {
       )}
       {isLoading && <Loader />}
       {trendingMovies.length > 0 && (
-        <TrendingMoviesList trendingMovies={trendingMovies} />
+        <MoviesList movies={trendingMovies} page="home" />
       )}
     </>
   );

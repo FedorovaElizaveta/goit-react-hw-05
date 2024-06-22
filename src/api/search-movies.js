@@ -17,7 +17,7 @@ const getMovies = async ({ query }) => {
     const { data } = await axios.get("/search/movie", options);
     return data;
   } catch (error) {
-    console.error("Error fetching trending movies:", error);
+    console.error("Error fetching movies:", error);
     alert("Sorry, something went wrong...");
     return null;
   }

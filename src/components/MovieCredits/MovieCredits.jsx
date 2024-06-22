@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Message from "../Message/Message";
 
 const MovieCredits = () => {
-  const { moviesId } = useParams();
+  const { movieId } = useParams();
   const [movieCredits, setMovieCredits] = useState({});
   const [error, setError] = useState(false);
   const [errorNoCast, setErrorNoCast] = useState(false);
@@ -21,7 +21,7 @@ const MovieCredits = () => {
         setError(false);
         setErrorNoCast(false);
         setIsLoading(true);
-        const data = await getMovieCredits(moviesId);
+        const data = await getMovieCredits(movieId);
         setMovieCredits(data);
         {
           data.cast.length === 0 && setErrorNoCast(true);
@@ -32,10 +32,10 @@ const MovieCredits = () => {
         setIsLoading(false);
       }
     };
-    if (moviesId) {
+    if (movieId) {
       fetchData();
     }
-  }, [moviesId]);
+  }, [movieId]);
 
   return (
     <div>

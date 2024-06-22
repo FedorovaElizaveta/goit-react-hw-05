@@ -7,7 +7,7 @@ import css from "./MovieReviews.module.css";
 import Message from "../Message/Message";
 
 const MovieReviews = () => {
-  const { moviesId } = useParams();
+  const { movieId } = useParams();
   const [movieReviews, setMovieReviews] = useState({});
   const [error, setError] = useState(false);
   const [errorNoReviews, setErrorNoReviews] = useState(false);
@@ -21,7 +21,7 @@ const MovieReviews = () => {
         setError(false);
         setErrorNoReviews(false);
         setIsLoading(true);
-        const data = await getMovieReviews(moviesId);
+        const data = await getMovieReviews(movieId);
         setMovieReviews(data);
         {
           data.results.length === 0 && setErrorNoReviews(true);
@@ -32,10 +32,10 @@ const MovieReviews = () => {
         setIsLoading(false);
       }
     };
-    if (moviesId) {
+    if (movieId) {
       fetchData();
     }
-  }, [moviesId]);
+  }, [movieId]);
 
   return (
     <div>

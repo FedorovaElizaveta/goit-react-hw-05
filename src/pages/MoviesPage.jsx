@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchMovieInput from "../components/SearchMovieInput/SearchMovieInput";
-import SearchedMovies from "../components/SearchedMovies/SearchedMovies";
+import MoviesList from "../components/MovieList/MovieList";
 import Loader from "../components/Loader/Loader";
 import getMovies from "../api/search-movies";
 import toast, { Toaster } from "react-hot-toast";
 import Message from "../components/Message/Message";
 
-const Movies = () => {
+const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState(searchParams.get("movie") || "");
@@ -68,9 +68,9 @@ const Movies = () => {
         </Message>
       )}
       {isLoading && <Loader />}
-      {movies.length > 0 && <SearchedMovies movies={movies} />}
+      {movies.length > 0 && <MoviesList movies={movies} />}
     </div>
   );
 };
 
-export default Movies;
+export default MoviesPage;
