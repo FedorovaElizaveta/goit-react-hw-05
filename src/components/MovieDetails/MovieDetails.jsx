@@ -1,5 +1,5 @@
 import css from "./MovieDetails.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getMovieDetails from "../../api/movie-details";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
@@ -16,7 +16,7 @@ const MovieDetails = () => {
   const genres = movie.genres?.map((genre) => genre.name).join(", ") ?? "";
 
   const location = useLocation();
-  const backLocation = location.state?.from || "/";
+  const backLocationRef = useRef(location.state?.from || "/");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ const MovieDetails = () => {
 
   return (
     <div className={css.movieDetailsList}>
-      <Link to={backLocation} className={css.backBtn}>
+      <Link to={backLocationRef.current} className={css.backBtn}>
         Go back
       </Link>
 
