@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getMovieReviews from "../../api/movie-reviews";
 import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import NoCreditsOrReviews from "../NoCreditsOrReviews/NoCreditsOrReviews";
 import noUserPhoto from "../../assets/images/no-user-photo.jpg";
 import css from "./MovieReviews.module.css";
+import Message from "../Message/Message";
 
 const MovieReviews = () => {
   const { moviesId } = useParams();
@@ -40,9 +39,14 @@ const MovieReviews = () => {
 
   return (
     <div>
-      {error && <ErrorMessage />}
-      {errorNoReviews && <NoCreditsOrReviews element="reviews" />}
+      {error && <Message position="middle">Something went wrong...</Message>}
+
+      {errorNoReviews && (
+        <Message position="middle">There are no reviews here...</Message>
+      )}
+
       {isLoading && <Loader />}
+
       {Object.keys(movieReviews).length > 0 && (
         <ul className={css.reviewsList}>
           {movieReviews.results?.map((result) => (
@@ -59,6 +63,7 @@ const MovieReviews = () => {
                   height={50}
                   className={css.authorAvatar}
                 />
+
                 <h3>{result.author}</h3>
               </div>
               <p>{result.content}</p>

@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import getMovieCredits from "../../api/movie-credits";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import noUserImage from "../../assets/images/no-user-photo.jpg";
 import css from "./MovieCredits.module.css";
 import clsx from "clsx";
-import NoCreditsOrReviews from "../NoCreditsOrReviews/NoCreditsOrReviews";
-import NoActorInfo from "../NoActorInfo/NoActorInfo";
+import Message from "../Message/Message";
 
 const MovieCredits = () => {
   const { moviesId } = useParams();
@@ -41,9 +39,12 @@ const MovieCredits = () => {
 
   return (
     <div>
-      {error && <ErrorMessage />}
-      {errorNoCast && <NoCreditsOrReviews element="cast" />}
+      {error && <Message position="middle">Something went wrong...</Message>}
+
+      {errorNoCast && <Message position="middle">No cast info here...</Message>}
+
       {isLoading && <Loader />}
+
       {Object.keys(movieCredits).length > 0 && (
         <ul className={css.castList}>
           {movieCredits.cast?.map((actor) => (
@@ -57,6 +58,7 @@ const MovieCredits = () => {
                 alt={actor.name}
                 className={css.castImg}
               />
+
               <div className={css.castListInfoWrapper}>
                 {actor.name ? (
                   <p
@@ -68,14 +70,15 @@ const MovieCredits = () => {
                     {actor.name}
                   </p>
                 ) : (
-                  <NoActorInfo element="name" />
+                  <Message element="actorName">No name info</Message>
                 )}
+
                 {actor.character ? (
                   <p className={css.castListInfoNameAndRole}>
                     {actor.character}
                   </p>
                 ) : (
-                  <NoActorInfo element="character" />
+                  <Message>No character info</Message>
                 )}
               </div>
             </li>

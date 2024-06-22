@@ -1,8 +1,0 @@
-.actorName::after {
-  content: "";
-  display: block;
-  margin: 0 auto;
-  width: 160px;
-  height: 2px;
-  background-color: #4e4b4b;
-}

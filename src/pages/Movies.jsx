@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchMovieInput from "../components/SearchMovieInput/SearchMovieInput";
 import SearchedMovies from "../components/SearchedMovies/SearchedMovies";
-import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
-import ErrorNoMovies from "../components/ErrorNoMovies/ErrorNoMovies";
 import Loader from "../components/Loader/Loader";
 import getMovies from "../api/search-movies";
 import toast, { Toaster } from "react-hot-toast";
+import Message from "../components/Message/Message";
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -62,9 +61,11 @@ const Movies = () => {
       </div>
 
       <SearchMovieInput onSearch={handleSearch} query={query} />
-      {error && <ErrorMessage />}
+      {error && <Message position="middle">Something went wrong...</Message>}
       {errorNoMovies && (
-        <ErrorNoMovies>There are no movies on your request...</ErrorNoMovies>
+        <Message position="middle">
+          There are no movies on your request...
+        </Message>
       )}
       {isLoading && <Loader />}
       {movies.length > 0 && <SearchedMovies movies={movies} />}

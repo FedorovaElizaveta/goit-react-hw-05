@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import getTrendingMovies from "../api/trending-movies";
 import TrendingMoviesList from "../components/TrendingMoviesList/TrendingMoviesList";
-import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import Loader from "../components/Loader/Loader";
-import ErrorNoMovies from "../components/ErrorNoMovies/ErrorNoMovies";
+import Message from "../components/Message/Message";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -33,11 +32,13 @@ const HomePage = () => {
 
   return (
     <>
-      {error && <ErrorMessage />}
+      {error && (
+        <Message position="middle">Oops! Something went wrong...</Message>
+      )}
       {errorNoMovies && (
-        <ErrorNoMovies>
+        <Message position="middle">
           Sorry, looks like there is no movies now...
-        </ErrorNoMovies>
+        </Message>
       )}
       {isLoading && <Loader />}
       {trendingMovies.length > 0 && (

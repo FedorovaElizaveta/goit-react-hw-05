@@ -1,5 +1,5 @@
 import css from "./SearchedMoviesItem.module.css";
-import noUserPhoto from "../../assets/images/no-user-photo.jpg";
+import noPosterAvailable from "../../assets/images/no_poster_available.jpg";
 
 const SearchedMoviesItem = ({ movie }) => {
   const imgBaseURL = "https://image.tmdb.org/t/p/w185";
@@ -10,11 +10,12 @@ const SearchedMoviesItem = ({ movie }) => {
         src={
           movie.backdrop_path
             ? `${imgBaseURL}${movie.backdrop_path}`
-            : noUserPhoto
+            : noPosterAvailable
         }
         alt={movie.title}
         width={185}
         height={104}
+        className={css.searchedMoviePoster}
       />
       <p className={css.movieName}>{movie.title}</p>
     </div>

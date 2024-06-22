@@ -16,7 +16,7 @@ const getTrendingMovieDetails = async (id) => {
     const { data } = await axios.get(`/movie/${id}`, options);
     return data;
   } catch (error) {
-    console.error("Error fetching movie details:", error);
+    console.error("Error fetching trending movies:", error);
     alert("Sorry, something went wrong...");
     return null;
   }

@@ -31,6 +31,10 @@
   margin-bottom: 30px;
 }
 
+.moviePoster {
+  object-fit: cover;
+}
+
 .movieInfo {
   display: flex;
   flex-direction: column;

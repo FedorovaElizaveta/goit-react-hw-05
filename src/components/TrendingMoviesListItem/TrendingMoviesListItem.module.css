@@ -22,3 +22,7 @@
   white-space: nowrap;
   margin-top: 10px;
 }
+
+.trendingMovieImg {
+  object-fit: cover;
+}

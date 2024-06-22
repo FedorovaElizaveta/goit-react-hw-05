@@ -1,17 +1,17 @@
+import css from "./MoviesListDetails.module.css";
 import { useEffect, useState } from "react";
 import getTrendingMovieDetails from "../../api/movie-details";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
-import css from "./TrendingMoviesListDetails.module.css";
-import NoElementMessage from "../NoElementMessage/NoElementMessage";
+import Message from "../Message/Message";
+import noPosterAvailable from "../../assets/images/no_poster_available.jpg";
 
-const TrendingMoviesListDetails = () => {
+const MoviesListDetails = () => {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const imageUrl = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
+  const imageBaseUrl = "https://image.tmdb.org/t/p/w342";
   const releaseDate = movie.release_date?.slice(0, 4) ?? "";
   const genres = movie.genres?.map((genre) => genre.name).join(", ") ?? "";
 
@@ -41,29 +41,52 @@ const TrendingMoviesListDetails = () => {
       <Link to={backLocation} className={css.backBtn}>
         Go back
       </Link>
-      {error && <ErrorMessage />}
+
+      {error && (
+        <Message position="middle">Oops! Something went wrong...</Message>
+      )}
+
       {isLoading && <Loader />}
+
       {Object.keys(movie).length > 0 && (
         <div>
           <div className={css.movieInfoWrapper}>
-            <img src={imageUrl} alt={movie.title} width={342} height={513} />
+            <img
+              src={
+                movie.poster_path
+                  ? `${imageBaseUrl}${movie.poster_path}`
+                  : noPosterAvailable
+              }
+              alt={movie.title}
+              width={342}
+              height={513}
+              className={css.moviePoster}
+            />
+
             <div className={css.movieInfo}>
               <h2 className={css.movieDetailsHeadings}>
                 {movie.title} ({releaseDate})
               </h2>
+
               <p>User Score: {movie.vote_average}</p>
+
               <h3 className={css.movieDetailsHeadings}>Overview</h3>
+
               {movie.overview ? (
                 <p>{movie.overview}</p>
               ) : (
-                <NoElementMessage element="overview" />
+                <Message>No overview here...</Message>
               )}
+
               <h3 className={css.movieDetailsHeadings}>Genres</h3>
-              {genres ? <p>{genres}</p> : <NoElementMessage element="genres" />}
+
+              {genres ? <p>{genres}</p> : <Message>No genres here...</Message>}
             </div>
           </div>
+
           <div className={css.movieCreditsAndReviews}>
             <p>Additional information</p>
+
             <ul className={css.movieCreditsAndReviewsList}>
               <li>
                 <Link
@@ -92,4 +115,4 @@ const TrendingMoviesListDetails = () => {
   );
 };
 
-export default TrendingMoviesListDetails;
+export default MoviesListDetails;

@@ -4,8 +4,8 @@ import { Suspense, lazy } from "react";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const Movies = lazy(() => import("./pages/Movies"));
-const TrendingMoviesListDetails = lazy(() =>
-  import("./components/TrendingMoviesListDetails/TrendingMoviesListDetails")
+const MoviesListDetails = lazy(() =>
+  import("./components/MoviesListDetails/MoviesListDetails")
 );
 const MovieCredits = lazy(() =>
   import("./components/MovieCredits/MovieCredits")
@@ -23,10 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
-          <Route
-            path="/movies/:moviesId"
-            element={<TrendingMoviesListDetails />}
-          >
+          <Route path="/movies/:moviesId" element={<MoviesListDetails />}>
             <Route path="credits" element={<MovieCredits />} />
             <Route path="reviews" element={<MovieReviews />} />
           </Route>
