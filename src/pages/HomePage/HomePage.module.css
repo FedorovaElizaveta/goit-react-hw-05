@@ -1,0 +1,9 @@
+.movieListContainer {
+  padding: 30px;
+}
+
+.movieTitle {
+  color: #bdc0d2;
+  margin-bottom: 20px;
+  text-align: center;
+}

@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
-const getMovieCredits = async (id) => {
+const getMovieCast = async (id) => {
   const options = {
     headers: {
       Authorization:
@@ -19,4 +19,4 @@ const getMovieCredits = async (id) => {
   }
 };
 
-export default getMovieCredits;
+export default getMovieCast;

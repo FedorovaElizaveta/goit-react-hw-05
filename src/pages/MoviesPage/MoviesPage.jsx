@@ -1,11 +1,12 @@
+import css from "./MoviesPage.module.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import SearchMovieInput from "../components/SearchMovieInput/SearchMovieInput";
-import MoviesList from "../components/MovieList/MovieList";
-import Loader from "../components/Loader/Loader";
-import getMovies from "../api/search-movies";
+import SearchMovieInput from "../../components/SearchMovieInput/SearchMovieInput";
+import MoviesList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
+import getMovies from "../../api/search-movies";
+import Message from "../../components/Message/Message";
 import toast, { Toaster } from "react-hot-toast";
-import Message from "../components/Message/Message";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -68,7 +69,11 @@ const MoviesPage = () => {
         </Message>
       )}
       {isLoading && <Loader />}
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 && (
+        <div className={css.movieListContainer}>
+          <MoviesList movies={movies} />
+        </div>
+      )}
     </div>
   );
 };

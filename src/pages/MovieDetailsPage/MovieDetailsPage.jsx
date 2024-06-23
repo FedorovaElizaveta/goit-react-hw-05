@@ -1,12 +1,12 @@
-import css from "./MovieDetails.module.css";
+import css from "./MovieDetailsPage.module.css";
 import { useEffect, useRef, useState } from "react";
-import getMovieDetails from "../../api/movie-details";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import Loader from "../Loader/Loader";
-import Message from "../Message/Message";
+import getMovieDetails from "../../api/movie-details";
+import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 import noPosterAvailable from "../../assets/images/no_poster_available.jpg";
 
-const MovieDetails = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState(false);
@@ -16,7 +16,7 @@ const MovieDetails = () => {
   const genres = movie.genres?.map((genre) => genre.name).join(", ") ?? "";
 
   const location = useLocation();
-  const backLocationRef = useRef(location.state?.from || "/");
+  const backLocationRef = useRef(location.state?.from || "/movies");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +50,7 @@ const MovieDetails = () => {
 
       {Object.keys(movie).length > 0 && (
         <div>
+          {console.log(movie)}
           <div className={css.movieInfoWrapper}>
             <img
               src={
@@ -64,11 +65,19 @@ const MovieDetails = () => {
             />
 
             <div className={css.movieInfo}>
-              <h2 className={css.movieDetailsHeadings}>
-                {movie.title} ({releaseDate})
-              </h2>
+              {movie.title ? (
+                <h2 className={css.movieDetailsHeadings}>
+                  {movie.title} ({releaseDate})
+                </h2>
+              ) : (
+                <Message>No title available</Message>
+              )}
 
-              <p>User Score: {movie.vote_average}</p>
+              {movie.vote_average ? (
+                <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+              ) : (
+                <Message>No user score available</Message>
+              )}
 
               <h3 className={css.movieDetailsHeadings}>Overview</h3>
 
@@ -80,7 +89,11 @@ const MovieDetails = () => {
 
               <h3 className={css.movieDetailsHeadings}>Genres</h3>
 
-              {genres ? <p>{genres}</p> : <Message>No genres here...</Message>}
+              {genres ? (
+                <p>{genres}</p>
+              ) : (
+                <Message>No genres available</Message>
+              )}
             </div>
           </div>
 
@@ -90,17 +103,17 @@ const MovieDetails = () => {
             <ul className={css.movieCreditsAndReviewsList}>
               <li>
                 <Link
-                  to="credits"
-                  state={{ from: location }}
+                  to="cast"
+                  state={{ from: backLocationRef.current }}
                   className={css.creditsAndReviewsLink}
                 >
-                  Credits
+                  Cast
                 </Link>
               </li>
               <li>
                 <Link
                   to="reviews"
-                  state={{ from: location }}
+                  state={{ from: backLocationRef.current }}
                   className={css.creditsAndReviewsLink}
                 >
                   Reviews
@@ -115,4 +128,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieDetailsPage;

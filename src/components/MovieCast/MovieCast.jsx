@@ -1,15 +1,15 @@
+import css from "./MovieCast.module.css";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
-import getMovieCredits from "../../api/movie-credits";
 import { useParams } from "react-router-dom";
+import getMovieCast from "../../api/movie-cast";
 import Loader from "../Loader/Loader";
 import noUserImage from "../../assets/images/no-user-photo.jpg";
-import css from "./MovieCredits.module.css";
-import clsx from "clsx";
 import Message from "../Message/Message";
 
-const MovieCredits = () => {
+const MovieCast = () => {
   const { movieId } = useParams();
-  const [movieCredits, setMovieCredits] = useState({});
+  const [movieCast, setMovieCast] = useState({});
   const [error, setError] = useState(false);
   const [errorNoCast, setErrorNoCast] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,8 +21,8 @@ const MovieCredits = () => {
         setError(false);
         setErrorNoCast(false);
         setIsLoading(true);
-        const data = await getMovieCredits(movieId);
-        setMovieCredits(data);
+        const data = await getMovieCast(movieId);
+        setMovieCast(data);
         {
           data.cast.length === 0 && setErrorNoCast(true);
         }
@@ -45,9 +45,9 @@ const MovieCredits = () => {
 
       {isLoading && <Loader />}
 
-      {Object.keys(movieCredits).length > 0 && (
+      {Object.keys(movieCast).length > 0 && (
         <ul className={css.castList}>
-          {movieCredits.cast?.map((actor) => (
+          {movieCast.cast?.map((actor) => (
             <li className={css.castListItem} key={actor.id}>
               <img
                 src={
@@ -89,4 +89,4 @@ const MovieCredits = () => {
   );
 };
 
-export default MovieCredits;
+export default MovieCast;

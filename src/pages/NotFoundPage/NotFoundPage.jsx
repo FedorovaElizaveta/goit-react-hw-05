@@ -1,7 +1,7 @@
+import css from "./NotFoundPage.module.css";
 import { Link } from "react-router-dom";
-import css from "./Error404.module.css";
 
-const Error404 = () => {
+const NotFoundPage = () => {
   return (
     <div className={css.errorWrapper}>
       <p className={css.errorCode}>404</p>
@@ -16,4 +16,4 @@ const Error404 = () => {
   );
 };
 
-export default Error404;
+export default NotFoundPage;

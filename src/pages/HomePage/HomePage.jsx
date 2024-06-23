@@ -1,8 +1,9 @@
+import css from "./HomePage.module.css";
 import { useEffect, useState } from "react";
-import getTrendingMovies from "../api/trending-movies";
-import MoviesList from "../components/MovieList/MovieList";
-import Loader from "../components/Loader/Loader";
-import Message from "../components/Message/Message";
+import getTrendingMovies from "../../api/trending-movies";
+import MoviesList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -41,8 +42,12 @@ const HomePage = () => {
         </Message>
       )}
       {isLoading && <Loader />}
+
       {trendingMovies.length > 0 && (
-        <MoviesList movies={trendingMovies} page="home" />
+        <div className={css.movieListContainer}>
+          <h2 className={css.movieTitle}>Trending Movies</h2>{" "}
+          <MoviesList movies={trendingMovies} />
+        </div>
       )}
     </>
   );

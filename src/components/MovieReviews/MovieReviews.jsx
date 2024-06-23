@@ -1,9 +1,9 @@
+import css from "./MovieReviews.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getMovieReviews from "../../api/movie-reviews";
 import Loader from "../Loader/Loader";
 import noUserPhoto from "../../assets/images/no-user-photo.jpg";
-import css from "./MovieReviews.module.css";
 import Message from "../Message/Message";
 
 const MovieReviews = () => {
@@ -12,7 +12,6 @@ const MovieReviews = () => {
   const [error, setError] = useState(false);
   const [errorNoReviews, setErrorNoReviews] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const avatarImgBaseURL = "https://image.tmdb.org/t/p/original";
 
   useEffect(() => {
